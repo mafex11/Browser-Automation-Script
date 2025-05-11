@@ -38,7 +38,11 @@ A Python automation tool that enhances search by integrating with DeepSeek AI.
 
 1. Run the search assistant:
    ```
+   # Basic usage
    python ai_search_assistant.py
+   
+   # Using persistent Chrome profile (recommended to avoid CAPTCHAs)
+   python ai_search_assistant.py --profile
    ```
 
 2. Enter your search query when prompted.
@@ -56,6 +60,20 @@ A Python automation tool that enhances search by integrating with DeepSeek AI.
 
 5. At the end, you'll have the option to keep the browser open or close it.
 
+## Using Persistent Profile
+
+The `--profile` option creates and uses a persistent Chrome profile stored in the `chrome-profile` directory. This has several benefits:
+
+- Greatly reduces likelihood of encountering CAPTCHAs
+- Maintains cookies between sessions
+- Allows you to log in to Google (and DeepSeek) once and stay logged in
+- Provides a more consistent browsing experience
+
+If you're experiencing CAPTCHA issues, always use this option:
+```
+python ai_search_assistant.py --profile
+```
+
 ## Handling CAPTCHAs
 
 Google sometimes shows CAPTCHAs when it detects automated activity. The script includes several anti-detection measures, but you might still encounter CAPTCHAs occasionally. If a CAPTCHA appears:
@@ -66,6 +84,7 @@ Google sometimes shows CAPTCHAs when it detects automated activity. The script i
 4. Press Enter in the terminal to continue the script
 
 Tips to reduce CAPTCHA frequency:
+- Always use the `--profile` option
 - Don't run too many searches in a short time period
 - Use the script while logged into your Google account (this may help Google establish trust)
 - Run the script with a VPN turned off
@@ -80,10 +99,10 @@ Tips to reduce CAPTCHA frequency:
 - **DeepSeek Not Loading**: Check your internet connection. The script may need adjustments if DeepSeek's interface changes.
 
 - **Constant CAPTCHAs**: If you frequently encounter CAPTCHAs, try the following:
+  - Use the `--profile` option and log in to your Google account in the profile 
   - Wait 10-15 minutes before running the script again
   - Clear your browser cookies and cache
   - Try using a different network connection
-  - Add `--user-data-dir=./chrome-profile` to the Chrome options to maintain a persistent profile
 
 ## How It Works
 
@@ -98,6 +117,7 @@ Tips to reduce CAPTCHA frequency:
 - `ai_search_assistant.py` - The main script
 - `download_chromedriver136.py` - Helper script to download the correct ChromeDriver version
 - `README.md` - This documentation file
+- `chrome-profile/` - Directory created when using the `--profile` option (contains Chrome user data)
 
 ## License
 

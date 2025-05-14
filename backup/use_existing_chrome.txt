@@ -1,0 +1,50 @@
+# How to Use Your Existing Chrome Window
+
+To connect to your already open Chrome window and control it (opening a new tab and performing searches), you need to:
+
+## Step 1: Close all existing Chrome windows
+
+Chrome doesn't allow connecting to an already running instance unless it was started with the remote debugging flag.
+
+## Step 2: Start Chrome with remote debugging enabled
+
+Windows:
+```
+chrome.exe --remote-debugging-port=9222
+```
+
+macOS:
+```
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222
+```
+
+Linux:
+```
+google-chrome --remote-debugging-port=9222
+```
+
+This will open a normal Chrome window that you can use as usual, but it will also allow our script to connect to it.
+
+## Step 3: Run the connect_to_chrome.py script
+
+```
+python connect_to_chrome.py
+```
+
+## Technical Limitation
+
+Due to Chrome's security restrictions, you cannot connect to a Chrome browser that is already running unless it was started with the remote debugging flag. This is why we need to start Chrome with this special flag.
+
+## Alternative: Create a Desktop Shortcut
+
+You can create a desktop shortcut to Chrome with the remote debugging flag:
+
+1. Right-click on your desktop
+2. Select "New" > "Shortcut"
+3. Enter the path to Chrome with the flag:
+   ```
+   "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9222
+   ```
+4. Name it "Chrome for Automation"
+
+Now you can use this shortcut whenever you want to use Chrome with the automation script. 
